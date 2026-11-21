@@ -1,0 +1,38 @@
+==================================================================
+LIDC-IDRI 结节级良恶性分类 · 首个 AUC
+==================================================================
+样本        602 结节 / 301 病人 | 恶 280 : 良 322 = 0.87 : 1
+灰区剔除    280 例（malignancy = 3）
+直径门槛    无
+
+【主模型】LASSO-L1 逻辑回归，嵌套 CV（外层 5 折 × 5 次重复，按 patient_id 分组）
+  AUC       0.732 ± 0.007   各次: 0.723 / 0.735 / 0.744 / 0.732 / 0.727
+  95% CI    0.688 – 0.774（病人级聚类 bootstrap，2000 次）
+  Brier     0.205（0.25 = 无信息基线）
+  每折入选   24.8 ± 10.8 个特征
+  置换检验  p = 0.010（100 次，零分布 0.499 ± 0.029）
+
+【参照】
+  log_diameter     AUC 0.401  (0.352 – 0.449)
+  log_volume       AUC 0.406  (0.357 – 0.454)
+  all107_noSelect  AUC 0.718  (0.675 – 0.759)
+
+【病例级敏感性】同一病例取各结节预测最大值
+  302 例 → AUC 0.743
+
+【入选最稳定的特征（入选折数占比）】
+  original_shape_Elongation                      100%
+  original_glcm_Imc2                             100%
+  original_gldm_LargeDependenceLowGrayLevelEmphasis    96%
+  original_shape_Maximum2DDiameterSlice           96%
+  original_glszm_LargeAreaLowGrayLevelEmphasis    92%
+  original_glcm_DifferenceAverage                 92%
+  original_firstorder_Minimum                     88%
+  original_firstorder_RootMeanSquared             88%
+  original_shape_Sphericity                       84%
+  original_glcm_MCC                               76%
+  original_glcm_ClusterShade                      76%
+  original_ngtdm_Strength                         76%
+
+【判定】可用：CI 下限 > 0.60 且优于单变量基线
+==================================================================

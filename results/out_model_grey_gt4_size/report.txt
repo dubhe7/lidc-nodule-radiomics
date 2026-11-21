@@ -1,0 +1,39 @@
+==================================================================
+LIDC-IDRI 结节级良恶性分类 · 首个 AUC
+==================================================================
+样本        184 结节 / 34 病人 | 恶 90 : 良 94 = 0.96 : 1
+灰区剔除    90 例（malignancy = 3）
+直径门槛    无
+模型输入    107 纹理/形状特征 + log(直径)（强制纳入，用于检验增量）
+
+【主模型】LASSO-L1 逻辑回归，嵌套 CV（外层 5 折 × 5 次重复，按 patient_id 分组）
+  AUC       0.706 ± 0.023   各次: 0.715 / 0.694 / 0.741 / 0.672 / 0.707
+  95% CI    0.630 – 0.779（病人级聚类 bootstrap，2000 次）
+  Brier     0.227（0.25 = 无信息基线）
+  每折入选   28.8 ± 13.6 个特征
+  增量(纹理-直径) ΔAUC = +0.2658  95% CI +0.1244 ~ +0.3963  -> 有增量
+
+【参照】
+  log_diameter     AUC 0.443  (0.347 – 0.546)
+  log_volume       AUC 0.445  (0.347 – 0.548)
+  all107_noSelect  AUC 0.706  (0.620 – 0.786)
+
+【病例级敏感性】同一病例取各结节预测最大值
+  34 例 → AUC 0.860
+
+【入选最稳定的特征（入选折数占比）】
+  original_shape_Elongation                      100%
+  original_firstorder_Skewness                   100%
+  original_shape_Maximum2DDiameterSlice           96%
+  original_firstorder_RootMeanSquared             96%
+  original_glcm_Correlation                       88%
+  original_gldm_LargeDependenceLowGrayLevelEmphasis    80%
+  original_glcm_Imc2                              76%
+  original_glszm_GrayLevelNonUniformityNormalized    72%
+  original_shape_Sphericity                       68%
+  original_glszm_SmallAreaEmphasis                64%
+  original_firstorder_Minimum                     64%
+  original_shape_Flatness                         64%
+
+【判定】可疑：未同时满足 CI 下限 > 0.60、置换 p < 0.05、优于基线
+==================================================================

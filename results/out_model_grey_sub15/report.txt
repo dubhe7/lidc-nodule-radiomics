@@ -1,0 +1,39 @@
+==================================================================
+LIDC-IDRI 结节级良恶性分类 · 首个 AUC
+==================================================================
+样本        471 结节 / 246 病人 | 恶 251 : 良 220 = 1.14 : 1
+灰区剔除    251 例（malignancy = 3）
+直径门槛    无 且 < 15.0 mm
+模型输入    107 纹理/形状特征 + log(直径)（强制纳入，用于检验增量）
+
+【主模型】LASSO-L1 逻辑回归，嵌套 CV（外层 5 折 × 3 次重复，按 patient_id 分组）
+  AUC       0.671 ± 0.006   各次: 0.679 / 0.666 / 0.670
+  95% CI    0.618 – 0.717（病人级聚类 bootstrap，2000 次）
+  Brier     0.222（0.25 = 无信息基线）
+  每折入选   30.6 ± 19.4 个特征
+  增量(纹理-直径) ΔAUC = +0.1490  95% CI +0.0715 ~ +0.2255  -> 有增量
+
+【参照】
+  log_diameter     AUC 0.522  (0.466 – 0.580)
+  log_volume       AUC 0.524  (0.471 – 0.578)
+  all107_noSelect  AUC 0.677  (0.618 – 0.729)
+
+【病例级敏感性】同一病例取各结节预测最大值
+  247 例 → AUC 0.660
+
+【入选最稳定的特征（入选折数占比）】
+  original_firstorder_RootMeanSquared            100%
+  original_shape_Elongation                       87%
+  original_glcm_Correlation                       87%
+  original_gldm_LargeDependenceLowGrayLevelEmphasis    87%
+  original_firstorder_Maximum                     87%
+  original_firstorder_Minimum                     80%
+  original_shape_Maximum2DDiameterSlice           73%
+  original_firstorder_Median                      73%
+  original_glcm_DifferenceAverage                 67%
+  original_glcm_JointEnergy                       67%
+  original_glcm_MaximumProbability                67%
+  original_glcm_ClusterShade                      67%
+
+【判定】可疑：未同时满足 CI 下限 > 0.60、置换 p < 0.05、优于基线
+==================================================================

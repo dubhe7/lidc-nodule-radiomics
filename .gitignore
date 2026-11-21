@@ -13,6 +13,6 @@ nodules.csv
 !results/**/selected_features.csv
 
 # 本地产物
-out_*/
+/out_*/
 *.docx
 .DS_Store
