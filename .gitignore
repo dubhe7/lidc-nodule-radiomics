@@ -1,0 +1,18 @@
+# Python
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+
+# 数据与衍生表（LIDC-IDRI 协议要求：不分发图像与逐结节衍生数据）
+features/
+oof_predictions.csv
+*_features.csv
+nodules_features*.csv
+labels.csv
+nodules.csv
+!results/**/selected_features.csv
+
+# 本地产物
+out_*/
+*.docx
+.DS_Store
