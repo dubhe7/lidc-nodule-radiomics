@@ -1,50 +1,36 @@
-# Zenodo DOI 发布操作指南（作者执行，约 15 分钟）
+# Zenodo DOI 发布操作指南（当前状态版，约 10 分钟）
 
-> 分工：以下 1–5 步只能由 GitHub 账号本人操作（需要登录态）。做之前先把新文件 push 上去（命令见文末）。
+> 更新于 2026-11-25 20:00。仓库侧动作（push、v1.0.0 release）已由 AI 代办完成，**只剩 Zenodo 账号侧的两步**——因为需要 GitHub 账号本人 OAuth 登录，任何人代办不了。
 
-## 前置：先把本批新文件推上仓库
+## 当前已完成（不用再动）
 
-```bash
-cd "E:/新建文件夹 (4)/2026-11-20-20-27-11/output/lidc-radiomics-repo"
-git add README.md CITATION.cff RELEASE_NOTES_v1.0.0.md ZENODO_STEPS.md
-git commit -m "docs: add citation metadata, v1.0.0 release notes, AI disclosure, zenodo guide"
-git push
-```
+- [x] 代码与文档全部 push 到 `https://github.com/dubhe7/lidc-nodule-radiomics`（最新 commit `130e2c2`）
+- [x] `CITATION.cff` / `RELEASE_NOTES_v1.0.0.md` / README 披露段 已在仓库中
+- [x] **v1.0.0 release 已发布**：https://github.com/dubhe7/lidc-nodule-radiomics/releases/tag/v1.0.0 （含复现性修复，快照为 `130e2c2`）
 
-## 1. Zenodo 关联 GitHub（一次性）
+## 第 1 步：登录 Zenodo 并开启仓库归档（一次性，3 分钟）
 
-1. 浏览器打开 https://zenodo.org ，点右上角 **Sign up / Log in** → 选 **Log in with GitHub**（用 dubhe7 账号 OAuth 授权）。
-2. 登录后进 https://zenodo.org/account/settings/github/ ，找到 `dubhe7/lidc-nodule-radiomics`，点 **Enable**（开启后该仓库的每个 release 都会自动归档）。
+1. 打开 https://zenodo.org → 右上角 **Log in** → 选 **Log in with GitHub**（dubhe7 账号 OAuth 授权）。
+2. 首次登录会要求补全资料（姓名、邮箱、机构可填 桂林医学院 / Guilin Medical University），保存。
+3. 进 https://zenodo.org/account/settings/github/ → 页面列出你的仓库 → 找到 `dubhe7/lidc-nodule-radiomics` → 把开关拨到 **ON**。
 
-## 2. 打 release 触发归档
+开启后 Zenodo 会自动抓取**已有的 v1.0.0 release**（无需再打一次 release）。
 
-1. 打开 https://github.com/dubhe7/lidc-nodule-radiomics/releases → **Draft a new release**。
-2. Choose a tag：输入 `v1.0.0`（main 分支最新提交上新建）。
-3. Title：`v1.0.0 — 首次公开归档`。
-4. Describe：把 `RELEASE_NOTES_v1.0.0.md` 全文粘贴进去。
-5. **Publish release**。Zenodo 会在几分钟内自动抓取仓库快照。
+## 第 2 步：拿 DOI（1–5 分钟）
 
-## 3. 拿 DOI
+1. 打开 https://zenodo.org/me/uploads （或 My dashboard），等出现 `lidc-nodule-radiomics` 条目，状态 `Published`。
+2. 点进去，右侧 DOI 区有两个号：
+   - **版本 DOI**（本版专用，形如 `10.5281/zenodo.XXXXXXX`）
+   - **Concept DOI**（跨版本通用，README/CITATION 里用它）
+3. 把 **Concept DOI** 复制发我，我回填 `CITATION.cff` 与 `README.md` 两处占位并 push。
 
-1. 回 https://zenodo.org/uploads/ （或 My dashboard），等状态变红条目出现（通常 1–5 分钟）。
-2. 点进去，右侧 **Cite all versions?** / DOI 区拿到两个号：
-   - **版本 DOI**（v1.0.0 专用）
-   - **概念 DOI**（代表所有版本，推荐写进 README/CITATION.cff 的是它）
-3. 复制 DOI，形如 `10.5281/zenodo.XXXXXXX`。
+## 验收标准
 
-## 4. 回填 DOI（两处）
+- [ ] Zenodo dashboard 出现条目，状态 Published，有 DOI
+- [ ] Zenodo 条目文件列表里能看到代码文件、README、CITATION.cff
+- [ ] DOI 链接可在无痕窗口打开
+- [ ] DOI 已回填进仓库（AI 执行）
 
-1. `CITATION.cff`：取消 `doi:` 行注释，填入真实 DOI。
-2. `README.md` 引用段：把 `10.5281/zenodo.XXXXXXX` 占位替换为真实 DOI。
-3. 再 commit + push 一次（不影响已归档快照，README 属于"活文档"）。
+## 署名说明
 
-## 5. 验收标准
-
-- [ ] Zenodo dashboard 出现条目，状态为 published，有 DOI；
-- [ ] GitHub Releases 页显示 v1.0.0 + Release notes；
-- [ ] Zenodo 条目里能看到 README、CITATION.cff、代码文件（不含 results 图以外的多余大文件即可）；
-- [ ] DOI 链接在新标签页打开能访问。
-
-## 署名决定（唯一待你拍板的项）
-
-当前 CITATION.cff 署名为 `dubhe7`（假名）。若中文核心投稿阶段需要真名，届时改 CITATION.cff 重新打 release 即可（Zenodo 会生成新版本 DOI，概念 DOI 不变）。两种都可以，没有对错，只有一致性问题：**简历/投稿里出现的名字必须和 DOI 上的一致**。
+当前 CITATION.cff 署名为 `dubhe7`。若日后需要真名（中文核心投稿、简历），改 CFF 重打 release 即可——版本 DOI 会变，**Concept DOI 不变**，引用连续性不受影响。唯一规则：简历/投稿中出现的名字必须与 DOI 上的一致。
