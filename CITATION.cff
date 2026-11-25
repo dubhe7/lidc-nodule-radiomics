@@ -1,0 +1,21 @@
+cff-version: 1.2.0
+title: "Radiomics on LIDC-IDRI pulmonary nodules: no size-adjusted increment over nodule diameter for malignancy prediction, but a robust increment for predicting radiologist disagreement (grey zone)"
+message: "If you use this software or these results, please cite it using the metadata from this file."
+type: software
+authors:
+  - alias: dubhe7
+    website: "https://github.com/dubhe7"
+version: v1.0.0
+date-released: "2026-11-25"
+license: MIT
+repository-code: "https://github.com/dubhe7/lidc-nodule-radiomics"
+keywords:
+  - radiomics
+  - lung nodule
+  - LIDC-IDRI
+  - malignancy prediction
+  - radiologist disagreement
+  - grey zone
+abstract: "Dual-endpoint radiomics study on LIDC-IDRI (302 patients / 602 annotated nodules). Endpoint 1 (negative result): predicting radiologist malignancy scores, radiomic features (AUC 0.975 +/- 0.003) add no size-adjusted increment over log(diameter) (AUC 0.980). Endpoint 2 (positive result): predicting radiologist disagreement (grey zone, score = 3), texture features achieve AUC 0.732 +/- 0.007 versus a diameter baseline of 0.401 (inverted), size-adjusted increment Delta-AUC +0.334 (95% CI +0.259 to +0.410), surviving in both the <=15 mm subgroup (+0.149) and the >=4-annotator subgroup (+0.266). Methods: PyRadiomics 107 features, LASSO-L1 logistic regression, nested cross-validation with patient-level grouping, cluster bootstrap CIs (2000), permutation test (p = 0.010)."
+# DOI 占位：Zenodo 归档发布后填入并删除下行注释
+# doi: 10.5281/zenodo.XXXXXXX

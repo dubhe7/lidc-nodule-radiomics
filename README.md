@@ -68,6 +68,17 @@ python build_model.py --csv features/nodules_features_gt4.csv --endpoint grey --
 3. class_weight=balanced 改变概率量级，校准曲线未检验——概率用于临床决策前需补校准。
 4. 单中心公开数据集，无外部验证队列。
 
+## 致谢与 AI 使用声明 / Acknowledgements & AI Use Disclosure
+
+- 中文：本研究的数据处理流水线搭建、代码调试与文稿整理过程使用大语言模型（Claude）作为辅助工具。研究问题与双终点设计由作者提出，全部数据获取与模型训练由作者本人执行，所有结果经作者逐项核对。作者对内容的正确性承担全部责任。依据 ICMJE 及相关期刊政策，AI 工具不列入作者署名。
+- English: Large language models (Claude) were used as auxiliary tools for pipeline construction, code debugging, and manuscript preparation. The research question and dual-endpoint design were conceived by the author; all data acquisition and model training were performed by the author; all results were verified by the author, who takes full responsibility for the content. In accordance with ICMJE guidance, AI tools are not listed as authors.
+
+## 引用本仓库 / How to cite
+
+引用格式见 [`CITATION.cff`](CITATION.cff)。Zenodo DOI 发布后在此处更新（占位：`10.5281/zenodo.XXXXXXX`）。
+
+If you use this repository, please cite it via `CITATION.cff`. DOI will be updated here after Zenodo archiving.
+
 ## License
 
 代码 MIT；数据遵循 LIDC-IDRI / TCIA 使用条款。
