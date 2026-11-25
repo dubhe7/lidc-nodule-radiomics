@@ -81,7 +81,8 @@ def inner_select(Xtr, ytr, gtr, seed):
                 continue
             sc = StandardScaler().fit(Xtr[itr])
             lr = LogisticRegression(penalty="l1", solver="liblinear", C=C,
-                                    class_weight="balanced", max_iter=3000)
+                                    class_weight="balanced", max_iter=3000,
+                                    random_state=0)
             lr.fit(sc.transform(Xtr[itr]), ytr[itr])
             p = lr.predict_proba(sc.transform(Xtr[iva]))[:, 1]
             aucs.append(roc_auc_score(ytr[iva], p))
@@ -90,7 +91,8 @@ def inner_select(Xtr, ytr, gtr, seed):
     best_C = float(C_GRID[int(np.argmax(scores))])
     sc = StandardScaler().fit(Xtr)
     lr = LogisticRegression(penalty="l1", solver="liblinear", C=best_C,
-                            class_weight="balanced", max_iter=3000)
+                            class_weight="balanced", max_iter=3000,
+                            random_state=0)
     lr.fit(sc.transform(Xtr), ytr)
     mask = np.abs(lr.coef_[0]) > 1e-8
     if mask.sum() == 0:                       # LASSO 全清零 -> 保住系数最大的一项

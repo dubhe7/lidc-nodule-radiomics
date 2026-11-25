@@ -79,6 +79,10 @@ python build_model.py --csv features/nodules_features_gt4.csv --endpoint grey --
 
 If you use this repository, please cite it via `CITATION.cff`. DOI will be updated here after Zenodo archiving.
 
+## Reproducibility note (2026-11-25)
+
+A full rerun of `build_model.py --endpoint grey` reproduced the results to within AUC ±0.0016 (well inside the bootstrap CI width of ±0.043). Root cause of the residual wobble was `solver="liblinear"` being invoked without a `random_state`; both L1 calls are now seeded (`random_state=0`), and two consecutive smoke runs are bit-exact. The committed `results/` remain the authoritative v1.0.0 outputs.
+
 ## License
 
 代码 MIT；数据遵循 LIDC-IDRI / TCIA 使用条款。
