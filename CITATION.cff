@@ -17,5 +17,5 @@ keywords:
   - radiologist disagreement
   - grey zone
 abstract: "Dual-endpoint radiomics study on LIDC-IDRI (302 patients / 602 annotated nodules). Endpoint 1 (negative result): predicting radiologist malignancy scores, radiomic features (AUC 0.975 +/- 0.003) add no size-adjusted increment over log(diameter) (AUC 0.980). Endpoint 2 (positive result): predicting radiologist disagreement (grey zone, score = 3), texture features achieve AUC 0.732 +/- 0.007 versus a diameter baseline of 0.401 (inverted), size-adjusted increment Delta-AUC +0.334 (95% CI +0.259 to +0.410), surviving in both the <=15 mm subgroup (+0.149) and the >=4-annotator subgroup (+0.266). Methods: PyRadiomics 107 features, LASSO-L1 logistic regression, nested cross-validation with patient-level grouping, cluster bootstrap CIs (2000), permutation test (p = 0.010)."
-# DOI 占位：Zenodo 归档发布后填入并删除下行注释
-# doi: 10.5281/zenodo.XXXXXXX
+doi: 10.5281/zenodo.24531302
+# 版本 DOI（v1.0.0 专用）：10.5281/zenodo.24531303

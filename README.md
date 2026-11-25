@@ -75,9 +75,13 @@ python build_model.py --csv features/nodules_features_gt4.csv --endpoint grey --
 
 ## 引用本仓库 / How to cite
 
-引用格式见 [`CITATION.cff`](CITATION.cff)。Zenodo DOI 发布后在此处更新（占位：`10.5281/zenodo.XXXXXXX`）。
+引用格式见 [`CITATION.cff`](CITATION.cff)。
 
-If you use this repository, please cite it via `CITATION.cff`. DOI will be updated here after Zenodo archiving.
+**DOI: [10.5281/zenodo.24531302](https://doi.org/10.5281/zenodo.24531302)**（Concept DOI，代表所有版本；v1.0.0 版本 DOI：[10.5281/zenodo.24531303](https://doi.org/10.5281/zenodo.24531303)）
+
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.24531302.svg)](https://doi.org/10.5281/zenodo.24531302)
+
+If you use this repository, please cite it via `CITATION.cff` or the Zenodo Concept DOI above.
 
 ## Reproducibility note (2026-11-25)
 
